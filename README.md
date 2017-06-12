@@ -131,6 +131,6 @@ Using the result of Problem\#10 we map each element in the list of tuples accord
      scala> processDup(listdup, runLength).map{ case (len,e) => { if (len==1) e else (len,e) } } 
 
 ### Concluding Remarks
-You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, parameterized types, and functional programming you can write very concise and efficient code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to functional programming.
+We have demonstrated in these code snippets that solving a few problems in a unified way is not very difficult. With the right approach and using abstraction, parameterized types, and functional programming you can write very concise and reusable code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to functional programming.
 
-Last, as a bonus exercise you can try to modify the "processDup" function above to work with another parameterized type of data such as strings for example. By modifying the processed list as List[A] instead of List[Int] you can create a more generic recursive function that can be used without changing any of the 4 presented external functions.   
+Last, as a bonus exercise you can try to modify the "processDup" function above to work with another parameterized data type like strings for example. By modifying the processed list as List[A] instead of List[Int] you can create a more generic recursive function that can be used without changing any of the 4 presented external functions.   
