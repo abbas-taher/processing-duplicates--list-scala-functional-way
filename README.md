@@ -74,8 +74,8 @@ For example given our data list we need to generate the following list of tuples
     
     res: List( (4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3) )
     
-If we try to use the reduceDup function defined above with a new function which we call runLength we shall reach a dead end. For the reduce parameter (which takes a function in reduceDup) is a mapping from List[Int] into List[Int] while here we are taking a list of integers but generating a tuple in the form List[(Int,Int)]. To overcome this problem we redefine our recursive function set using a parameterized type "T". The code to do so is as follows.      
-    
+If we try to use the reduceDup function defined above with a new function which we call runLength we shall reach a dead end. For the reduce parameter (which takes a function in reduceDup) is a mapping from List[Int] into List[Int] while here we are taking a list of integers but generating a tuple in the form List[(Int,Int)]. To overcome this problem we redefine our recursive function set using a generic type "T". The code to do so is as follows.      
+    // generic version
     def processDup[T](ls : List[Int], reduce: List[Int] => List[T]) : List[T] = {
       def iter (lst : List[Int]): List[T] ={
         lst match {
@@ -88,7 +88,7 @@ If we try to use the reduceDup function defined above with a new function which 
       iter(ls)
     }
 
-The type "T" has been abstracted and assigned in the return types of both the outer and inner functions; thus, we gain greater flexibility in passing various kinds of external functions to perform different operations. For example, the runLength function below can be used to solve problem\#10 and return a tuple instead of an integer.
+The type "T" has been abstracted and assigned in the return types of both the outer and inner functions; as a result, we gain greater flexibility in passing different kinds of external functions as parameters to perform various operations. For example, the runLength function below can be used to solve problem\#10 and return a tuple instead of an integer.
 
     def runLength(ls : List[Int]) : List[(Int, Int)] ={
        List((ls.size,ls.head))
@@ -98,7 +98,7 @@ The type "T" has been abstracted and assigned in the return types of both the ou
     res: List[(Int, Int)] = List((4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3))
 
 #### Problem\#8: Revisited
-We can use the parameterized abstract version as well to solve Problem\#8 without writing a single line of code. Simply calling "processDup" instead of "reduceDup" using the length function will do the job.
+We can use the parameterized generic version as well to solve Problem\#8 without writing a single line of code. Simply calling "processDup" instead of "reduceDup" using the length function will do the job.
 
     def purge(ls : List[Int]) : List[Int] = {
        ls.toSet.toList
@@ -108,7 +108,7 @@ We can use the parameterized abstract version as well to solve Problem\#8 withou
     res: List[Int] = List(1, 2, 4, 5, 3, 4, 3)
 
 ### Problem\#9: Pack consecutive duplicates of a list into sublists
-In Problem\#9 we need to group repeated elements into separate sublists. Given our parameterized function "processDup" above, the solution is amazingly simple:
+In Problem\#9 we need to group repeated elements into separate sublists. Given our generic function "processDup" above, the solution is amazingly simple:
 
     val listdup = List (1,1,1,1,2,2,4,4,5,3,4,4,4,3,3)
     
@@ -133,4 +133,4 @@ Using the result of Problem\#10 we map each element in the list of tuples accord
 ### Concluding Remarks
 You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, parameterized types, and functional programming you can write very concise and efficient code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to functional programming.
 
-Last, as a bonus exercise you can try to modify the "processDup" function above to work with other types of data such as strings for example. By modifying the processed list as List[L] instead of List[Int] you can create a more generalized recursive function that can be used without changing any of the 4 presented external functions.   
+Last, as a bonus exercise you can try to modify the "processDup" function above to work with another parameterized type of data such as strings for example. By modifying the processed list as List[A] instead of List[Int] you can create a more generic recursive function that can be used without changing any of the 4 presented external functions.   
