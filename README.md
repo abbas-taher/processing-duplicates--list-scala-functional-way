@@ -1,7 +1,7 @@
 ## Tutorial 101: Processing consecutive duplicates in a list using Scala - the functional way   
 ### Step by step examples to solving problems 8-11 from the Ninty-Nine set of exercises
 
-This tutorial presents solutions for solving problems 8-11 of the famous Ninety-Nine Prolog exercises (by Werner Hett). Given a list of integers, we’ll look at different methods to process consecutive duplicates. First, we start with a code snippet on problem\#8 then gradually describe a more generalized algorithm to solving these 4 problems in Scala.
+This tutorial presents solutions for solving problems 8-11 of the famous 99 Prolog exercises (by Werner Hett). Given a list of integers, we’ll look at different methods to process consecutive duplicates. First, we start with a code snippet on problem\#8 then gradually describe a more generalized algorithm to solving these 4 problems in Scala.
 
 I am using the following integer list that contains multiple consecutive duplicates as a basis for testing.
 
@@ -128,9 +128,9 @@ In this problem we modify the result of problem\#10 such that if an element has 
 
 Using the result of Problem\#10 we map each element in the list of tuples according to whether "N" is equal or different from 1. The code snippet to perform the transformation:
 
-     scala> processdup(listdup, size).map{ case (len,e) => { if (len==1) e else (len,e) } } 
+     scala> processdup(listdup, runLength).map{ case (len,e) => { if (len==1) e else (len,e) } } 
 
 ### Concluding Remarks
-You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, recursion, parameterized types, and functional programming you can write very concise and efficient code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to programming.
+You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, parameterized types, and functional programming you can write very concise and efficient code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to functional programming.
 
-Last, as a bonus exercise you can modify the "processDup" function above to work with other types of data such as strings for example. By generalizing on the processed list "List[L]" you can create a more generalized recursive function that can be used without changing any of the presented external functions.   
+Last, as a bonus exercise you can try to modify the "processDup" function above to work with other types of data such as strings for example. By modifying the processed list as List[L] instead of List[Int] you can create a more generalized recursive function that can be used without changing any of the 4 presented external functions.   
