@@ -7,11 +7,11 @@ I am using the following integer list that contains multiple consecutive duplica
 
     val listdup = List (1,1,1,1,2,2,4,4,5,3,4,4,4,3,3)
 
-Let's start with the first problem where we present two code samples: a hard coded approach and a flexible functional method that is reusable.
+Let's start with the first problem where we present two code samples: a hard coded approach and a flexible functional method that enables reusability.
 
 ### Problem\#8: Eliminate consecutive duplicates in a list
 #### *Hard coded approach 
-Given the above list remove duplicate copies of each consecutive integers while keeping the sequence the same.
+Given the above list remove duplicate copies of each consecutive integer while keeping the sequence intact.
 
     def removeDup(lst : List[Int]) : List[Int] = {
        lst match {
@@ -28,7 +28,7 @@ Given the above list remove duplicate copies of each consecutive integers while 
 In the above function the list is split into two sub-lists using the "span" operator. The head of the first list which contains the duplicates is selected while the second list (which contains the remaining elements) is passed recursively using the same function. The recursion terminates when there are no more elements to be removed from the remain list.
 
 #### *Using a functional approach
-The above code snippets is straight forward and "duplicate elimination" is hard coded within the recursive function. To make the code more flexible we can use an externally defined function that takes a list of duplicate integers and "purges" them into one. To use the purge function we pass it as a parameter to the outer function which then uses it to eliminate duplicates within the recursive algorithm. Here is the code for the two functions:
+The above code snippets is straight forward and "duplicate elimination" is hard coded within the recursive function. To make the code more reusable we can use an externally defined function that takes a list of duplicate integers and "purges" them into one. We then pass the purge function as a parameter to the higher order function "reduceDup" which calls the recursive algorithm "iter". Here is the code for the three functions:
 
     def reduceDup(ls : List[Int], reduce: List[Int] => List[Int]) : List[Int] = {
       def iter (lst : List[Int]): List[Int] ={
