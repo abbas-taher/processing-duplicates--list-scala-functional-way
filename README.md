@@ -97,7 +97,16 @@ The type "T" has been abstracted and assigned in the return types of both the ou
     scala> processDup(listdup,runLength)
     res: List[(Int, Int)] = List((4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3))
 
-   
+#### Problem\#8: Revisited
+We can use the parametrized abstract version as well to solve Problem\#8 without writing a single line of code. Simply calling "processDup" instread of "reduceDup" using the length function will do the job.
+
+    def length(ls : List[Int]) : List[Int] ={
+       List(ls.size)
+    }
+    
+    scala> processDup(listdup,length)
+    res: List[Int] = List(4, 2, 2, 1, 1, 3, 2)
+
 ### Problem\#9: Group consecutive duplicates of list into sublists
 Now we can tackle the next problem where we group repeated elements into a separate sublists. Given our parametrized function "processDup" above, the solution for this problem is amazingly simple:
 
@@ -119,9 +128,9 @@ In this problem we modify the result of problem\#10 such that if an element has 
 
  The code snippet to perform the screening is as follows:
 
-    processdup(listdup, size).map{ case (len,e) => 
-                                       { if (len==1) e else (len,e) }
-                                  } 
+    scala> processdup(listdup, size).map{ case (len,e) => 
+                                            { if (len==1) e else (len,e) }
+                                         } 
 
 Here we use the result of Problem\#10 and map each element in the list of tuple according to whether its "N" is equal or different from 1.
 
