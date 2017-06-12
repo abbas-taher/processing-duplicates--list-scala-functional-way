@@ -26,7 +26,7 @@ Given the above list remove duplicate copies of each consecutive integers while 
     scala> removeDup(listdup)
     res: List[Int] = List(1, 2, 4, 5, 3, 4, 3)
 
-In the above function the list is split into two sub-lists using the "span" operator. The head of the first list which contains the duplicates is selected while the second list (which contains the remaining elements) is passed reclusively using the same function. The recursion terminates when there are no more elements in the remain list to be removed.
+In the above function the list is split into two sub-lists using the "span" operator. The head of the first list which contains the duplicates is selected while the second list (which contains the remaining elements) is passed reclusively using the same function. The recursion terminates when there are no more elements to be removed from the remain list.
 
 #### *Using a functional approach
 The above code snippets is straight forward and "duplicate elimination" is hard coded within the recursive function. To make the code more flexible we can use an externally defined function that takes a list of duplicate integers and "purges" them into one. To use the purge function we need to pass it as a parameter to the outer function which then applies the duplicate elimination operation within the recursive algorithm. Here is the code for the two functions:
