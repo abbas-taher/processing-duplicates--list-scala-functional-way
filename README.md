@@ -1,5 +1,5 @@
 ## Tutorial 101: Processing consecutive duplicates in a list using Scala - a functional approach   
-### Step by step examples to solving problems 8-11 from the famous Nine-Nine problmes
+### Step by step examples to solving problems 8-11 from the famous Nine-Nine problems
 
 This tutorial presents a functional solution for solving problems 8-11 of the famous Ninety-Nine Prolog problems (by Werner Hett). Given a list of integers, the tutorial explains how to process consecutive duplicates using Scala. I first start with a code snippet on problem\# 8 then gradually describe a more generalized algorithm to solving these 4 problems.
 
@@ -10,7 +10,7 @@ For illustration purposes, I am using the following integer list that contains m
 Lets start with the first problem and present a straight forward code sample.
 
 ### Problem\#8: Eliminate consecutive duplicates in a list
-#### >Hard coded approach 
+#### *Hard coded approach 
 Given the above list replace each set of consecutive integers with one copy while the order of the integers is not changed.
 
     def removedup(lst : List[Int]) : List[Int] = {
@@ -29,7 +29,7 @@ Given the above list replace each set of consecutive integers with one copy whil
 
 In the above, the list passed to the function is split into two lists using the span operator. The head of the first list which contains the duplicates is selected while the second list which contains the remaining elements is passed recusively using the same function.
 
-#### >Using an functional approach
+#### *Using an functional approach
 The above code snippets is straight forward and "duplicate elimination" is hard coded within the recursive function. To make the code more flexible we can use an externaly defined function that takes a list of duplicate integers and purges them into one. Also we need to change the recursive function to take the external purge function as a parameter. The code to do so is as follows:
 
     def processdup[T](ls : List[Int], reduce: List[Int] => List[T]) : List[T] = {
