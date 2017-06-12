@@ -52,8 +52,9 @@ The above code snippets is straight forward and "duplicate elimination" is hard 
 
 Without the inner "iter" function you can recursively traverse the list. This is a common technique used in Scala for such cases and the language elables programmers to define nested functions where parameters from the outer function are in scope within the inner function.  
 
+### Problem\#10: Run-length encoding 
 #### Problem: Run-length data count
-Extending the code of problem\#8 we can very easily implement a simple data count commonly known as "run-length encoding". Consecutive duplicates of elements are aggregated and their count is registerd into a list. To do so all we need is to define a new external function that performs the operation and then pass it as a parameter to the reduceDup recursive function above.
+Extending the code of problem\#8 we can very easily implement a simple data count commonly known as "run-length encoding". Consecutive duplicates of elements are aggregated and their count is registerd into a list. Thus, all we need is to define a new external function that performs the operation and then passes it as a parameter to the reduceDup recursive function set above.
 
     def length(ls : List[Int]) : List[Int] ={
        List(ls.size)
@@ -64,8 +65,8 @@ Extending the code of problem\#8 we can very easily implement a simple data coun
 
 This is quite simple and we can see here the beauty of functional programming where functions can be passed as parameters to other function.
 
-### Problem\#10: Run-length encoding - simple data compression 
-Using the result of the previous problem we can try to implement the so-called run-length encoding data compression method. In this problem consecutive duplicates of data are encoded as terms (N,D) where N is the number of duplicates of the Data element D.
+#### Problem\#10: Run-length encoding - simple data compression 
+Similar to the result of the previous problem, we can also try to implement Problem\#10 - the so-called run-length encoding data compression method. In this problem consecutive duplicates of data are encoded as a tuple (N,D) where N is the number of duplicates of the Data element D.
 
 For example given our data list we need to generate the following list of tuples:
 
@@ -73,7 +74,7 @@ For example given our data list we need to generate the following list of tuples
     
     res: List( (4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3) )
     
-If we try to use the reduceDup function defined above with a new function which we call runLength we shall reach a dead end. For the reduce parameter (which takes a function in reduceDup) is a mapping from List[Int] into List[Int] while here we are taking a list of integers but generating a tuple in the form List[(Int,Int)]. To over come this dead end we can redefine our recursive function set using a parametrize types. The code to do so is as follows.      
+If we try to use the reduceDup function defined above with a new function which we call runLength we shall reach a dead end. For the reduce parameter (which takes a function in reduceDup) is a mapping from List[Int] into List[Int] while here we are taking a list of integers but generating a tuple in the form List[(Int,Int)]. To over come this dead end we redefine our recursive function set using a parametrize type "T". The code to do so is as follows.      
     
     def processDup[T](ls : List[Int], reduce: List[Int] => List[T]) : List[T] = {
       def iter (lst : List[Int]): List[T] ={
@@ -87,24 +88,46 @@ If we try to use the reduceDup function defined above with a new function which 
       iter(ls)
     }
 
-Using this new function we gain greater flexibility in defining our external functions. For example the runLength function below can be used to solve this problem.
+The type "T" has been abstracted and assigned in the return types of both the outer and inner functions; thus, we gain greater flexibility in passing various kinds of external functions. For example, the runLength function below can be used to solve problem\#10 and retun a tuple instead of an integer.
 
     def runLength(ls : List[Int]) : List[(Int, Int)] ={
-       List((ls.size,ls(0)))
+       List((ls.size,ls.head))
     } 
 
     scala> processDup(listdup,runLength)
     res: List[(Int, Int)] = List((4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3))
 
-    
-Run-length encoding of a list.
+   
+### Problem\#9: Group consecutive duplicates of list into sublists
+Now we can tackle the next problem where we group repeated elements into a separate sublists. Given our parametrized function "processDup" above, the solution for this problem is amazingly simple:
 
-Use the result of problem 9 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as terms (N E) where N is the number of duplicates of the element E.
+    val listdup = List (1,1,1,1,2,2,4,4,5,3,4,4,4,3,3)
+    
+    def group(ls : List[Int]) : List[List[Int]] = {
+       List(ls)
+    }
+    
+    scala> processDup(listdup,group)
+    res: List[List[Int]] = List(List(1, 1, 1, 1), List(2, 2), List(4, 4), List(5), List(3), List(4, 4, 4), List(3, 3))
+
+### Problem\#11: Modified Run-length encoding - simple data compression 
+In this problem we modify the result of problem\#10 such that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as an (N,D) tuple. For example given our data list we need to generate the following list of data/tuples:
+
+    val listdup = List (1,1,1,1,2,2,4,4,5,3,4,4,4,3,3)
+    
+    res: List( (4,1), (2,2), (2,4), 5, 3, (3,4), (2,3) )
+
+ The code snippet to perform the screening is as follows:
+
+    processdup(listdup, size).map{ case (len,e) => 
+                                       { if (len==1) e else (len,e) }
+                                  } 
+
+Here we use the result of Problem\#10 and map each element in the list of tuple according to whether its "N" is equal or different from 1.
 
 ### Concluding Remarks
 Here I presented a few code snippets that you can be useful in learning Scala. Using recursion, lists, and parametrized types you can get a good feeling for the Scala and take your first steps to explore idiomatic approaches solving problems using this powerful and expressive programming language. 
 
 ---------
 
-The above code and then the first part which contains the duplicates is purged into a set and 
-so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as terms 
+
