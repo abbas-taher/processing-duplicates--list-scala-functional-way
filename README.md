@@ -11,7 +11,7 @@ Let's start with the first problem where we present two code samples: a hard cod
 
 ### Problem\#8: Eliminate consecutive duplicates in a list
 #### *Hard coded approach 
-Given the above list remove duplicate copies of each consecutive integers while the keeping the sequence the same.
+Given the above list remove duplicate copies of each consecutive integers while keeping the sequence the same.
 
     def removeDup(lst : List[Int]) : List[Int] = {
        lst match {
