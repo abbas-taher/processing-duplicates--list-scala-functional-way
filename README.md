@@ -75,6 +75,7 @@ For example given our data list we need to generate the following list of tuples
     res: List( (4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3) )
     
 If we try to use the reduceDup function defined above with a new function which we call runLength we shall reach a dead end. For the reduce parameter (which takes a function in reduceDup) is a mapping from List[Int] into List[Int] while here we are taking a list of integers but generating a tuple in the form List[(Int,Int)]. To overcome this problem we redefine our recursive function set using a generic type "T". The code to do so is as follows.      
+    
     // generic version
     def processDup[T](ls : List[Int], reduce: List[Int] => List[T]) : List[T] = {
       def iter (lst : List[Int]): List[T] ={
