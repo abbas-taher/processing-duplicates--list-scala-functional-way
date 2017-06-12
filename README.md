@@ -99,7 +99,7 @@ The type "T" has been abstracted and assigned in the return types of both the ou
     res: List[(Int, Int)] = List((4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3))
 
 #### Problem\#8: Revisited
-We can use the parameterized generic version as well to solve Problem\#8 without writing a single line of code. Simply calling "processDup" instead of "reduceDup" using the length function will do the job.
+We can use the parameterized generic version as well to solve Problem\#8 without writing a single line of code. Simply calling "processDup" instead of "reduceDup" and using the length function will do the job.
 
     def purge(ls : List[Int]) : List[Int] = {
        ls.toSet.toList
