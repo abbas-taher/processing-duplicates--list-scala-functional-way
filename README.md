@@ -126,13 +126,9 @@ In this problem we modify the result of problem\#10 such that if an element has 
     
     res: List( (4,1), (2,2), (2,4), 5, 3, (3,4), (2,3) )
 
- The code snippet to perform the screening is as follows:
+Using the result of Problem\#10 we map each element in the list of tuples according to whether "N" is equal or different from 1. The code snippet to perform the transformation:
 
-     scala> processdup(listdup, size).map{ case (len,e) => 
-                                            { if (len==1) e else (len,e) }
-                                          } 
-
-Using the result of Problem\#10 we map each element in the list of tuples according to whether its "N" is equal or different from 1.
+     scala> processdup(listdup, size).map{ case (len,e) => { if (len==1) e else (len,e) } } 
 
 ### Concluding Remarks
 You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, recursion, parameterized types, and functional programming you can write very concise and efficient code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to programming.
