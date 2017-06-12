@@ -36,7 +36,7 @@ The above code snippets is straight forward and "duplicate elimination" is hard 
       def iter (lst : List[Int]): List[T] ={
        lst match {
          case head::tail => { 
-           val (duplst,remainlst) = lst.span(_==head)
+           val (duplst,remainlst) = lst.span(_ == head)
            reduce(duplst) ::: iter(remainlst)
          }
          case Nil => List[T]()
