@@ -135,6 +135,6 @@ In this problem we modify the result of problem\#10 such that if an element has 
 Using the result of Problem\#10 we map each element in the list of tuples according to whether its "N" is equal or different from 1.
 
 ### Concluding Remarks
-You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, recursion, parametrized types, and functional programming you can write very concised and efficinet code in Scala. 
+You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, recursion, parametrized types, and functional programming you can write very concised and efficinet code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to  programming.
 
-Please take your time to code and experiment with the examples as a first step to exploring the idiomatic approach to solving programming problems. As a bonus exercise you can also modify the "processDup" program above to work with other types of data such as strings for example. By parametrizing on the processed list List[L] you create an even more generalized recursive function. 
+Last, as a bonus exercise you can modify the "processDup" program above to work with other types of data such as strings for example. By parametrizing on the processed list "List[L]" you can create a more generalized recursive function that can be used without changing any of the given external functions.   
