@@ -7,7 +7,7 @@ I am using the following integer list that contains multiple consecutive duplica
 
     val listdup = List (1,1,1,1,2,2,4,4,5,3,4,4,4,3,3)
 
-Let's start with the first problem where we present two code samples: a hard coded approach and a flexible functional method.
+Let's start with the first problem where we present two code samples: a hard coded approach and a flexible functional method that is reusable.
 
 ### Problem\#8: Eliminate consecutive duplicates in a list
 #### *Hard coded approach 
