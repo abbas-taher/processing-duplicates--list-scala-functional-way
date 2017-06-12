@@ -11,7 +11,7 @@ Lets start with the first problem where we present two code samples: a hard code
 
 ### Problem\#8: Remove consecutive duplicates in a list
 #### *Hard coded approach 
-Given the above list replace each set of consecutive integers with one copy while the sequence of the integers stays the same.
+Given the above list replace each set of the consecutive integers with one copy while the sequence of the integers remains the same.
 
     def removeDup(lst : List[Int]) : List[Int] = {
        lst match {
@@ -28,7 +28,7 @@ Given the above list replace each set of consecutive integers with one copy whil
 
 In the above, the list passed to the function is split into two lists using the "span" operator. The head of the first list which contains the duplicates is selected while the second list which contains the remaining elements is passed recusively using the same function. The recursion terminates when there are no more elements in the list to be removed.
 
-#### *Using an functional approach
+#### *Using a functional approach
 The above code snippets is straight forward and "duplicate elimination" is hard coded within the recursive function. To make the code more flexible we can use an externaly defined function that takes a list of duplicate integers and "purges" them into one. To use the purge function we need to pass it as a parameter to the main function which then applies the duplicate elimination function within the recursive algorithm. Here is the code for the two functions:
 
     def reduceDup(ls : List[Int], reduce: List[Int] => List[Int]) : List[Int] = {
@@ -128,15 +128,13 @@ In this problem we modify the result of problem\#10 such that if an element has 
 
  The code snippet to perform the screening is as follows:
 
-    scala> processdup(listdup, size).map{ case (len,e) => 
+     scala> processdup(listdup, size).map{ case (len,e) => 
                                             { if (len==1) e else (len,e) }
-                                         } 
+                                          } 
 
-Here we use the result of Problem\#10 and map each element in the list of tuple according to whether its "N" is equal or different from 1.
+Using the result of Problem\#10 we map each element in the list of tuples according to whether its "N" is equal or different from 1.
 
 ### Concluding Remarks
-Here I presented a few code snippets that you can be useful in learning Scala. Using recursion, lists, and parametrized types you can get a good feeling for the Scala and take your first steps to explore idiomatic approaches solving problems using this powerful and expressive programming language. 
+You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, recursion, parametrized types, and functional programming you can write very concised and efficinet code in Scala. 
 
----------
-
-
+Please take your time to code and experiment with the examples as a first step to exploring the idiomatic approach to solving programming problems. As a bonus exercise you can also modify the "processDup" program above to work with other types of data such as strings for example. By parametrizing on the processed list List[L] you create an even more generalized recursive function. 
