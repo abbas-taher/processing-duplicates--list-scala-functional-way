@@ -1,13 +1,13 @@
 ## Tutorial 101: Processing consecutive duplicates in a list using Scala - the functional way   
 ### Step by step examples to solving problems 8-11 from the Ninty-Nine set of exercises
 
-This tutorial presents solutions for solving problems 8-11 of the famous 99 Prolog exercises (by Werner Hett). Given a list of integers, we’ll look at different methods to process consecutive duplicates. First, we start with a code snippet on problem\#8 then gradually describe a more generalized algorithm to solving these 4 problems in Scala.
+This tutorial presents solutions for solving problems 8-11 of the famous 99 Prolog exercises (by Werner Hett). Given a list of integers, we’ll look at different methods to process consecutive duplicates. First, we start with a code snippet on problem\#8 then gradually describe a more generalized algorithm using higher order functions to solve these 4 problems in Scala.
 
 I am using the following integer list that contains multiple consecutive duplicates as a basis for testing.
 
     val listdup = List (1,1,1,1,2,2,4,4,5,3,4,4,4,3,3)
 
-Let's start with the first problem where we present two code samples: a hard coded approach and a more flexible functional method.
+Let's start with the first problem where we present two code samples: a hard coded approach and a flexible functional method.
 
 ### Problem\#8: Eliminate consecutive duplicates in a list
 #### *Hard coded approach 
@@ -53,7 +53,7 @@ Without the inner "iter" function you can not recursively traverse the list. Thi
 
 ### Problem\#10: Run-length encoding 
 #### Problem: Run-length data count
-Extending the code of problem\#8 we can very easily implement a simple data count commonly known as "run-length encoding". Consecutive duplicates of elements are aggregated and their count is registered into a list. Thus, all we need is to define a new external function that performs the operation and then passes it as a parameter to the reduceDup recursive function set above.
+Reusing the code of problem\#8 we can very easily implement a simple data count commonly known as "run-length encoding". Consecutive duplicates of elements are aggregated and their count is registered into a list. Thus, all we need is to define a new external function that performs the operation and then passes it as a parameter to the reduceDup recursive function set above.
 
     def length(ls : List[Int]) : List[Int] ={
        List(ls.size)
@@ -62,7 +62,7 @@ Extending the code of problem\#8 we can very easily implement a simple data coun
     scala> reduceDup(listdup,length)
     res: List[Int] = List(4, 2, 2, 1, 1, 3, 2)
 
-This is quite simple and we can see here the beauty of functional programming where functions can be passed as parameters to higher order functions.
+This is quite simple and we can see here the beauty of functional programming and code reusability where functions can be passed as parameters to higher order functions.
 
 #### Problem\#10: Run-length encoding - simple data compression 
 Similar to the result of the previous problem, we can implement Problem\#10 - the so-called run-length encoding data compression method. In this problem consecutive duplicates of data are encoded as a tuple (N,D) where N is the number of duplicates of the Data element D.
