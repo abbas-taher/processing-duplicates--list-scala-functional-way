@@ -17,8 +17,7 @@ Given the above list remove duplicate copies of each consecutive integers while 
        lst match {
          case head::tail => { 
            val (duplst,remainlst) = lst.span(_ == head)
-           duplst.head :: removedup(remainlst)
-         }
+           duplst.head :: removedup(remainlst) }
          case Nil => List()
        }
     }   
@@ -50,7 +49,7 @@ The above code snippets is straight forward and "duplicate elimination" is hard 
     scala> reduceDup(listdup,purge)
     res: List[Int] = List(1, 2, 4, 5, 3, 4, 3)
 
-Without the inner "iter" function you can not recursively traverse the list. This is a common technique used in Scala for such cases and the language enables programmers to define nested functions where parameters from the outer function are in scope within the inner function.  
+Without the inner "iter" function you can not recursively traverse the list. This is a common technique used in Scala for such cases and the language enables programmers to define nested functions where parameters from the outer function are in scope within the inner function. Also, in reduceDup we are concatenating two lists using the ::: operator while in removeDup we only add a single element to the start of the list using the :: operator.
 
 ### Problem\#10: Run-length encoding 
 #### Problem: Run-length data count
