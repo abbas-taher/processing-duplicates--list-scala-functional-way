@@ -7,7 +7,7 @@ For illustration purposes, I am using the following integer list that contains m
 
     val listdup = List (1,1,1,1,2,2,4,4,5,3,4,4,4,3,3)
 
-Lets start with the first problem where we present two code samples: a hard coded approach and a more flexible functional method.
+Let's start with the first problem where we present two code samples: a hard coded approach and a more flexible functional method.
 
 ### Problem\#8: Remove consecutive duplicates in a list
 #### *Hard coded approach 
@@ -26,10 +26,10 @@ Given the above list replace each set of the consecutive integers with one copy 
     scala> removeDup(listdup)
     res: List[Int] = List(1, 2, 4, 5, 3, 4, 3)
 
-In the above, the list passed to the function is split into two lists using the "span" operator. The head of the first list which contains the duplicates is selected while the second list which contains the remaining elements is passed recusively using the same function. The recursion terminates when there are no more elements in the list to be removed.
+In the above, the list passed to the function is split into two lists using the "span" operator. The head of the first list which contains the duplicates is selected while the second list which contains the remaining elements is passed reclusively using the same function. The recursion terminates when there are no more elements in the list to be removed.
 
 #### *Using a functional approach
-The above code snippets is straight forward and "duplicate elimination" is hard coded within the recursive function. To make the code more flexible we can use an externaly defined function that takes a list of duplicate integers and "purges" them into one. To use the purge function we need to pass it as a parameter to the main function which then applies the duplicate elimination function within the recursive algorithm. Here is the code for the two functions:
+The above code snippets is straight forward and "duplicate elimination" is hard coded within the recursive function. To make the code more flexible we can use an externally defined function that takes a list of duplicate integers and "purges" them into one. To use the purge function we need to pass it as a parameter to the main function which then applies the duplicate elimination function within the recursive algorithm. Here is the code for the two functions:
 
     def reduceDup(ls : List[Int], reduce: List[Int] => List[Int]) : List[Int] = {
       def iter (lst : List[Int]): List[Int] ={
@@ -50,11 +50,11 @@ The above code snippets is straight forward and "duplicate elimination" is hard 
     scala> reduceDup(listdup,purge)
     res: List[Int] = List(1, 2, 4, 5, 3, 4, 3)
 
-Without the inner "iter" function you can recursively traverse the list. This is a common technique used in Scala for such cases and the language elables programmers to define nested functions where parameters from the outer function are in scope within the inner function.  
+Without the inner "iter" function you can recursively traverse the list. This is a common technique used in Scala for such cases and the language enables programmers to define nested functions where parameters from the outer function are in scope within the inner function.  
 
 ### Problem\#10: Run-length encoding 
 #### Problem: Run-length data count
-Extending the code of problem\#8 we can very easily implement a simple data count commonly known as "run-length encoding". Consecutive duplicates of elements are aggregated and their count is registerd into a list. Thus, all we need is to define a new external function that performs the operation and then passes it as a parameter to the reduceDup recursive function set above.
+Extending the code of problem\#8 we can very easily implement a simple data count commonly known as "run-length encoding". Consecutive duplicates of elements are aggregated and their count is registered into a list. Thus, all we need is to define a new external function that performs the operation and then passes it as a parameter to the reduceDup recursive function set above.
 
     def length(ls : List[Int]) : List[Int] ={
        List(ls.size)
@@ -74,7 +74,7 @@ For example given our data list we need to generate the following list of tuples
     
     res: List( (4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3) )
     
-If we try to use the reduceDup function defined above with a new function which we call runLength we shall reach a dead end. For the reduce parameter (which takes a function in reduceDup) is a mapping from List[Int] into List[Int] while here we are taking a list of integers but generating a tuple in the form List[(Int,Int)]. To over come this dead end we redefine our recursive function set using a parametrize type "T". The code to do so is as follows.      
+If we try to use the reduceDup function defined above with a new function which we call runLength we shall reach a dead end. For the reduce parameter (which takes a function in reduceDup) is a mapping from List[Int] into List[Int] while here we are taking a list of integers but generating a tuple in the form List[(Int,Int)]. To overcome this dead end we redefine our recursive function set using a parameterized type "T". The code to do so is as follows.      
     
     def processDup[T](ls : List[Int], reduce: List[Int] => List[T]) : List[T] = {
       def iter (lst : List[Int]): List[T] ={
@@ -88,7 +88,7 @@ If we try to use the reduceDup function defined above with a new function which 
       iter(ls)
     }
 
-The type "T" has been abstracted and assigned in the return types of both the outer and inner functions; thus, we gain greater flexibility in passing various kinds of external functions. For example, the runLength function below can be used to solve problem\#10 and retun a tuple instead of an integer.
+The type "T" has been abstracted and assigned in the return types of both the outer and inner functions; thus, we gain greater flexibility in passing various kinds of external functions. For example, the runLength function below can be used to solve problem\#10 and return a tuple instead of an integer.
 
     def runLength(ls : List[Int]) : List[(Int, Int)] ={
        List((ls.size,ls.head))
@@ -98,7 +98,7 @@ The type "T" has been abstracted and assigned in the return types of both the ou
     res: List[(Int, Int)] = List((4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3))
 
 #### Problem\#8: Revisited
-We can use the parametrized abstract version as well to solve Problem\#8 without writing a single line of code. Simply calling "processDup" instread of "reduceDup" using the length function will do the job.
+We can use the parameterized abstract version as well to solve Problem\#8 without writing a single line of code. Simply calling "processDup" instread of "reduceDup" using the length function will do the job.
 
     def length(ls : List[Int]) : List[Int] ={
        List(ls.size)
@@ -108,7 +108,7 @@ We can use the parametrized abstract version as well to solve Problem\#8 without
     res: List[Int] = List(4, 2, 2, 1, 1, 3, 2)
 
 ### Problem\#9: Group consecutive duplicates of list into sublists
-Now we can tackle the next problem where we group repeated elements into a separate sublists. Given our parametrized function "processDup" above, the solution for this problem is amazingly simple:
+Now we can tackle the next problem where we group repeated elements into a separate sublists. Given our parameterized function "processDup" above, the solution for this problem is amazingly simple:
 
     val listdup = List (1,1,1,1,2,2,4,4,5,3,4,4,4,3,3)
     
@@ -135,6 +135,6 @@ In this problem we modify the result of problem\#10 such that if an element has 
 Using the result of Problem\#10 we map each element in the list of tuples according to whether its "N" is equal or different from 1.
 
 ### Concluding Remarks
-You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, recursion, parametrized types, and functional programming you can write very concised and efficinet code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to  programming.
+You can see from the few code snippets presented in this article that solving multiple problems in a unified way is not very difficult. With the right approach and using abstraction, recursion, parameterized types, and functional programming you can write very concise and efficient code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to programming.
 
-Last, as a bonus exercise you can modify the "processDup" program above to work with other types of data such as strings for example. By parametrizing on the processed list "List[L]" you can create a more generalized recursive function that can be used without changing any of the given external functions.   
+Last, as a bonus exercise you can modify the "processDup" function above to work with other types of data such as strings for example. By generalizing on the processed list "List[L]" you can create a more generalized recursive function that can be used without changing any of the presented external functions.   
