@@ -28,7 +28,7 @@ Given the above list remove duplicate copies of each consecutive integers while 
 In the above function the list is split into two sub-lists using the "span" operator. The head of the first list which contains the duplicates is selected while the second list (which contains the remaining elements) is passed recursively using the same function. The recursion terminates when there are no more elements to be removed from the remain list.
 
 #### *Using a functional approach
-The above code snippets is straight forward and "duplicate elimination" is hard coded within the recursive function. To make the code more flexible we can use an externally defined function that takes a list of duplicate integers and "purges" them into one. To use the purge function we need to pass it as a parameter to the outer function which then applies the duplicate elimination operation within the recursive algorithm. Here is the code for the two functions:
+The above code snippets is straight forward and "duplicate elimination" is hard coded within the recursive function. To make the code more flexible we can use an externally defined function that takes a list of duplicate integers and "purges" them into one. To use the purge function we pass it as a parameter to the outer function which then uses it to eliminate duplicates within the recursive algorithm. Here is the code for the two functions:
 
     def reduceDup(ls : List[Int], reduce: List[Int] => List[Int]) : List[Int] = {
       def iter (lst : List[Int]): List[Int] ={
@@ -62,7 +62,7 @@ Extending the code of problem\#8 we can very easily implement a simple data coun
     scala> reduceDup(listdup,length)
     res: List[Int] = List(4, 2, 2, 1, 1, 3, 2)
 
-This is quite simple and we can see here the beauty of functional programming where functions can be passed as parameters to other function.
+This is quite simple and we can see here the beauty of functional programming where functions can be passed as parameters to higher order functions.
 
 #### Problem\#10: Run-length encoding - simple data compression 
 Similar to the result of the previous problem, we can implement Problem\#10 - the so-called run-length encoding data compression method. In this problem consecutive duplicates of data are encoded as a tuple (N,D) where N is the number of duplicates of the Data element D.
