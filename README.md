@@ -88,7 +88,7 @@ If we try to use the reduceDup function defined above with a new function which 
       iter(ls)
     }
 
-The type "T" has been abstracted and assigned in the return types of both the outer and inner functions; as a result, we gain greater flexibility in passing different kinds of external functions as parameters to perform various operations. For example, the runLength function below can be used to solve problem\#10 and return a tuple instead of an integer.
+The type "T" has been abstracted and assigned in the return types of both the outer and inner functions; as a result, we gain greater flexibility in passing different kinds of external functions as parameters to perform various operations. For example, the runLength function below can be used to solve problem\#10 and return a list of tuples instead of a list of integers.
 
     def runLength(ls : List[Int]) : List[(Int, Int)] ={
        List((ls.size,ls.head))
@@ -98,7 +98,7 @@ The type "T" has been abstracted and assigned in the return types of both the ou
     res: List[(Int, Int)] = List((4,1), (2,2), (2,4), (1,5), (1,3), (3,4), (2,3))
 
 #### Problem\#8: Revisited
-We can use the parameterized generic version as well to solve Problem\#8 without writing a single line of code. Simply calling "processDup" instead of "reduceDup" and using the length function will do the job.
+We can use the parameterized generic version as well to solve Problem\#8 without writing a single line of code. Simply calling "processDup" instead of "reduceDup" and using the purge function will do the job.
 
     def purge(ls : List[Int]) : List[Int] = {
        ls.toSet.toList
@@ -120,7 +120,7 @@ In Problem\#9 we need to group repeated elements into separate sublists. Given o
     res: List[List[Int]] = List(List(1, 1, 1, 1), List(2, 2), List(4, 4), List(5), List(3), List(4, 4, 4), List(3, 3))
 
 ### Problem\#11: Modified Run-length encoding - simple data compression 
-In this problem we modify the result of problem\#10 such that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as an (N,D) tuple. For example given our data list we need to generate the following list of data/tuples:
+In this problem we modify the result of problem\#10 such that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as an (N,D) tuple. For example, given our data list we need to generate the following list of data/tuples:
 
     val listdup = List (1,1,1,1,2,2,4,4,5,3,4,4,4,3,3)
     
@@ -131,6 +131,6 @@ Using the result of Problem\#10 we map each element in the list of tuples accord
      scala> processDup(listdup, runLength).map{ case (len,e) => { if (len==1) e else (len,e) } } 
 
 ### Concluding Remarks
-We have demonstrated in these code snippets that solving a few problems in a unified way is not very difficult. With the right approach and using abstraction, parameterized types, and functional programming you can write very concise and reusable code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to functional programming.
+We have demonstrated in these code snippets that solving a few problems in a unified way is not very difficult. With the right approach and using abstraction, parameterized types, and higher order functions you can write very concise and reusable code in Scala. Please take your time to experiment with these samples as a first step to exploring the idiomatic approach to functional programming.
 
 Last, as a bonus exercise you can try to modify the "processDup" function above to work with another parameterized data type like strings for example. By modifying the processed list as List[A] instead of List[Int] you can create a more generic recursive function that can be used without changing any of the 4 presented external functions.   
