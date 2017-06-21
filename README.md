@@ -1,5 +1,5 @@
-## Tutorial 101: Processing consecutive duplicates in a list using Scala - the functional way   
-### Step by step examples to solving problems 8-11 from the Ninty-Nine set of exercises
+## Tutorial 101: Processing consecutive duplicates in a list using Scala - the functional approach   
+### Step by step to solving problems 8-11 from the Ninety Nine set of exercises in a generalized way
 
 This tutorial presents solutions for solving problems 8-11 of the famous 99 Prolog exercises (by Werner Hett). Given a list of integers, we’ll look at different methods to process consecutive duplicates. First, we start with a code snippet on problem\#8 then gradually describe a more generalized algorithm using higher order functions to solve these 4 problems in Scala.
 
