@@ -17,7 +17,7 @@ Given the above list remove duplicate copies of each consecutive integer while k
        lst match {
          case head::tail => { 
            val (duplst,remainlst) = lst.span(_ == head)
-           duplst.head :: removedup(remainlst) }
+           duplst.head :: removeDup(remainlst) }
          case Nil => List()
        }
     }   
